@@ -1,0 +1,44 @@
+body{
+	display: flex;
+	justify-content: center;
+	background-color: grey;
+}
+
+.game{
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	max-width: 414px;
+}
+
+.row{
+	margin: 0;
+	display: flex;
+	justify-content: center;
+}
+
+.btnContainer{
+	width: 40vw;
+	height: 40vw;
+	max-width: 180px;
+	max-height: 180px;
+	margin: 10px;
+	border-radius: 15px;
+	cursor: pointer;
+	background: black;
+	opacity: 0.8;
+}
+
+@keyframes brightColor {
+    0% {opacity: 0.8;}
+    50% {opacity: 1;}
+    100% {opacity: 0.8;}
+}
+
+.colorAnima{	
+	animation: brightColor 0.6s ease-in-out;
+}
+
+button:focus {
+	outline:0;
+}
