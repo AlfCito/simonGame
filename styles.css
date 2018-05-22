@@ -26,13 +26,13 @@ body{
 	border-radius: 15px;
 	cursor: pointer;
 	background: black;
-	opacity: 0.8;
+	opacity: 0.65;
 }
 
 @keyframes brightColor {
-    0% {opacity: 0.8;}
+    0% {opacity: 0.65;}
     50% {opacity: 1;}
-    100% {opacity: 0.8;}
+    100% {opacity: 0.65;}
 }
 
 .colorAnima{	
@@ -41,4 +41,14 @@ body{
 
 button:focus {
 	outline:0;
+}
+
+#interaction,
+#display{
+	padding: 10px;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	height: 60px;
+
 }
