@@ -1,16 +1,18 @@
 window.onload = function(){
 
-  let gameArr = [0,1];
+  let gameArr = [];
   let userArr = [];
   let userPlays = 0;
   let aiPlays = 0;
   let gamePlays = 0;
+  let strict = false;
+  let winnerPlayer = false;
 
   let textHandler;
 
   let userTurn = false;
 
-  const maxMoves = 20;
+  const maxMoves = 10;
 
   let btns = [
     red = {
@@ -36,25 +38,12 @@ window.onload = function(){
   ];
 
   document.getElementById('init').addEventListener('click', function(e){
-    if(!userTurn){
-      start();
-    }
-    
-  })
+    start();   
+  });
 
-/*  CREATE GAME SEQUENCE   */
-
-  randomNum = (min, max) => {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-  createSequence = () => {
-    for(let i = 0; i < maxMoves; i++ ){
-      gameArr.push(randomNum(0, btns.length));
-    }
-  }
-
-  //createSequence();
+  document.getElementById('Strict').addEventListener('change', function(e){
+    strict = this.checked;   
+  });
 
 /*  CREATE BUTTONS   */
 
@@ -100,51 +89,60 @@ window.onload = function(){
   }
 
   checkClick = (i) => {
-
     // i = userPlays
     let indexNum = i;
-
     // compare value of the current userPlay (index of the array)
-    if(userArr[indexNum] === gameArr[indexNum]){   
-
-    console.log('userPlays');
-    console.log(userPlays);
-
-    console.log('gamePlays');
-    console.log(gamePlays); 
-
+    if(userArr[indexNum] === gameArr[indexNum]){ 
       // if we are at the end we have a winner
       if(userArr.length === gameArr.length){
-        console.log('You are a winner!');
         userTurn = false;
         winner();
       }else if(userPlays+1 < gamePlays){  //if the player havent reach the current game plays keep going
         userPlays++;
-        console.log('next move');
       }else if(userPlays+1 === gamePlays){  //else if player reach the last gamePlay call the AI
         // Stop user turn and call AI  
-        console.log('call ai');
         userTurn = false;
         addCount(); 
         aiMove();
       }
-
     }else{
-      console.log('wrong answer')
       loser();
       userTurn = false;
-    }
-
-    console.log('-----------------------');
-    
+    }    
   } 
 
   createButtons();
 
-  
   ////////////////
 
   start = () => {
+
+    gameArr = [];
+
+    randomNum = (min, max) => {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    createSequence = () => {
+      for(let i = 0; i < maxMoves; i++ ){
+        let num;
+        num = randomNum(0, btns.length);
+        if(gameArr.length > 2){
+          if(num === gameArr.length && num === gameArr.length-1){
+            gameArr.push(randomNum(0, btns.length));
+          }else{
+            gameArr.push(num)
+          }
+        }else{
+          gameArr.push(num);
+        }
+        
+      }
+    }
+
+    createSequence();
+
+    winnerPlayer = false;
 
     aiPlays = 0;
     gamePlays = 0;
@@ -167,9 +165,37 @@ window.onload = function(){
 
   aiMove = () => {
 
-    if(gamePlays == 1){
+    // timer speed by play count
+    /*
+    function timer(max, counter){
+      time = ((gameArr.length-counter) * max)/gameArr.length;
+      if(time < 200){
+        return 200;
+      }else{
+        return time;
+      }      
+    }
+    */
 
+    function timer(max, min, currentPlay){
+      let difference = max-min;
+      let time = ((gameArr.length-currentPlay) * difference)/gameArr.length;
+      if(time < min){
+        return min;
+      }else{
+        return time;
+      }      
+    }
+
+    let userReset = () => {
+      userPlays = 0;
+      userArr = [];
+      userTurn = true; 
+    }
+
+    if(gamePlays == 1){
       animaBtn(gameArr[0]);
+      userReset();
 
     }else{
 
@@ -179,23 +205,22 @@ window.onload = function(){
           setTimeout(function () {
             animaBtn(gameArr[counter]);
             counter++;          
+            if(counter == gamePlays){
+              userReset();
+            }
             timeout(counter);
-          }, 1000);
-        }         
+          }, timer(1000, 400, gamePlays));
+          
+        };                 
       }
-
       timeout(0);
-
-    }
-
-    userPlays = 0;
-    userArr = [];
-    userTurn = true; 
-    console.log('user turn'); 
+    }   
      
   }  
 
   winner = () => {
+
+    winnerPlayer = true;
 
     let repeat = 5;
 
@@ -222,7 +247,7 @@ window.onload = function(){
         setTimeout(function () {
           var audio = new Audio(btns[counter].soundPath);
           audio.play();
-          counter++;          
+          counter++;       
           errorSound(counter);
         }, 50);        
       }         
@@ -244,18 +269,30 @@ window.onload = function(){
     textHandler = setInterval(function() {
         text.style.display = (text.style.display == 'none' ? '' : 'none');
         counter++;
-        console.log(counter);
         if(counter >= repeat){
           clearInterval(textHandler);
+          repeatMode();          
         }
     }, 200);
+  }
 
+  repeatMode = () => {
+    if(!winnerPlayer){
 
+      if(!strict){
+        setTimeout(function () {
+          document.getElementById('turns').innerHTML = gamePlays;
+        }, 800);
+        aiMove();
+      }else{
+        start();
+      }
+
+    }
   }
 
 }
 
 /* TO DO */
-// Set the user turn after the computer finish all the moves... promises maybe??
-// Implement stric mode; and auto start
+
 // Work on the design
