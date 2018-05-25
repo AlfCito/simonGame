@@ -1,8 +1,14 @@
 body{
 	height: 100vh;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	background-image: url(https://images.pexels.com/photos/220116/pexels-photo-220116.jpeg);
 	background-position: center;
 	background-size: cover;
@@ -10,14 +16,22 @@ body{
 }
 
 .game{
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	background-color: rgb(25,25,25);
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 	max-width: 320px;
 	border-radius: 100%;
 	position: relative;
-	box-shadow: 
+	-webkit-box-shadow: 
+		0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+		0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	        box-shadow: 
 		0 4px 8px 0 rgba(0, 0, 0, 0.2), 
 		0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -30,13 +44,18 @@ body{
 	border: 8px solid rgb(25,25,25);
 	position: absolute;
 	top: 19%;
-	box-shadow: 0px 0px 18px 4px rgba(0,0,0,0.67);
+	-webkit-box-shadow: 0px 0px 18px 4px rgba(0,0,0,0.67);
+	        box-shadow: 0px 0px 18px 4px rgba(0,0,0,0.67);
 }
 
 .row{
 	margin: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 .btnContainer{
@@ -52,26 +71,58 @@ body{
 }
 
 
-@keyframes brightColor {
+@-webkit-keyframes brightColor {
     0% {
     	opacity: 0.65;
-    	box-shadow:
+    	-webkit-box-shadow:
+	        0 0 0px 0px #fff;
+    	        box-shadow:
 	        0 0 0px 0px #fff;
     }
     50% {
     	opacity: 1;
-    	box-shadow:
+    	-webkit-box-shadow:
+	        0 0 1px 1px #fff;
+    	        box-shadow:
 	        0 0 1px 1px #fff; 
     }
     100% {
     	opacity: 0.65;
-    	box-shadow:
+    	-webkit-box-shadow:
+	        0 0 0px 0px #fff;
+    	        box-shadow:
+	        0 0 0px 0px #fff;
+    }
+}
+
+
+@keyframes brightColor {
+    0% {
+    	opacity: 0.65;
+    	-webkit-box-shadow:
+	        0 0 0px 0px #fff;
+    	        box-shadow:
+	        0 0 0px 0px #fff;
+    }
+    50% {
+    	opacity: 1;
+    	-webkit-box-shadow:
+	        0 0 1px 1px #fff;
+    	        box-shadow:
+	        0 0 1px 1px #fff; 
+    }
+    100% {
+    	opacity: 0.65;
+    	-webkit-box-shadow:
+	        0 0 0px 0px #fff;
+    	        box-shadow:
 	        0 0 0px 0px #fff;
     }
 }
 
 .colorAnima{	
-	animation: brightColor 0.6s ease-in-out;
+	-webkit-animation: brightColor 0.6s ease-in-out;	
+	        animation: brightColor 0.6s ease-in-out;
 	
 }
 
@@ -86,14 +137,23 @@ button:focus {
 #interaction{
 	width: 100%;
 	padding: 0 30px;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: space-between;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 	height: 60px;
 }
 
 .custom-control {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 	padding-left: 0;
 }
 
@@ -115,16 +175,23 @@ button:focus {
 
 
 #display{
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	margin-top: 20px;
 	background-color: black;
 	width: 100px;
 	height: 60px;
 	border: 2px solid #dddddd;
 	border-radius: 15px;
-	box-shadow: inset 0 0 25px rgb(150,0,0);
+	-webkit-box-shadow: inset 0 0 25px rgb(150,0,0);
+	        box-shadow: inset 0 0 25px rgb(150,0,0);
 }
 
 #turns{
