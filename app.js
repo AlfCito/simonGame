@@ -12,7 +12,7 @@ window.onload = function(){
 
   let userTurn = false;
 
-  const maxMoves = 10;
+  const maxMoves = 20;
 
   let btns = [
     red = {
@@ -101,9 +101,12 @@ window.onload = function(){
         userPlays++;
       }else if(userPlays+1 === gamePlays){  //else if player reach the last gamePlay call the AI
         // Stop user turn and call AI  
-        userTurn = false;
-        addCount(); 
-        aiMove();
+        setTimeout(function () {
+          userTurn = false;
+          addCount(); 
+          aiMove();
+        }, 500);
+        
       }
     }else{
       loser();

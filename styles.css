@@ -1,7 +1,12 @@
 body{
+	height: 100vh;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	background-color: grey;
+	background-image: url(https://images.pexels.com/photos/220116/pexels-photo-220116.jpeg);
+	background-position: center;
+	background-size: cover;
 }
 
 .game{
@@ -9,6 +14,18 @@ body{
 	display: flex;
 	justify-content: center;
 	max-width: 414px;
+	border-radius: 400px;
+	position: relative;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#btnsMenu{
+	width: 220px;
+	height: 220px;
+	background-color: white;
+	border-radius: 220px;
+	position: absolute;
+	top: 23%;
 }
 
 .row{
@@ -29,6 +46,7 @@ body{
 	opacity: 0.65;
 }
 
+
 @keyframes brightColor {
     0% {opacity: 0.65;}
     50% {opacity: 1;}
@@ -39,16 +57,59 @@ body{
 	animation: brightColor 0.6s ease-in-out;
 }
 
+.btn {
+	border-radius: 2rem;
+}
+
 button:focus {
 	outline:0;
 }
 
-#interaction,
-#display{
-	padding: 10px;
-	background-color: white;
+#interaction{
+	width: 100%;
+	padding: 0 30px;
+	//background-color: white;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	height: 60px;
+}
 
+.custom-control {
+	display: flex;
+	flex-direction: column;
+	padding-left: 0;
+}
+
+[id="0"]{
+	border-radius: 180px 0 0 0;
+}
+
+[id="1"]{
+	border-radius: 0 180px 0 0;
+}
+
+[id="2"]{
+	border-radius: 0 0 0 180px;
+}
+
+[id="3"]{
+	border-radius: 0 0 180px 0;
+}
+
+#display{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	background-color: black;
+	width: 100px;
+	height: 60px;
+	border: 2px solid #dddddd;
+	border-radius: 15px;
+	box-shadow: inset 0 0 25px rgb(150,0,0);
+}
+
+#turns{
+	color: red;
+	font-size: 2rem;
 }
